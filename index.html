@@ -11,8 +11,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=0.5">
 </head>
 <body>
-<canvas id="gameCanvas" width="800" height="600"></canvas>
+<style>
+
+    body {
+        margin: 0;
+    }
+</style>
+
+<canvas id="gameCanvas"></canvas>
+
     <script>
+    
     var canvas;
     var canvasContext;
     var ballX = 50;
@@ -32,7 +41,28 @@
     const PADDLE_HEIGHT = 100;
 
     const tableColor = 'green';
-    
+
+    // code to make canvas responsive
+/*
+    window.onload = function(){
+        init();
+        window.addEventListener('resize', init, false);    
+    }
+*/
+    function init(){
+        var gameCanvas = document.getElementById('gameCanvas');
+        var context = gameCanvas.getContext('2d');
+        var myWidth = window.innerWidth -7;
+        var myHeight = window.innerHeight -7;
+        context.canvas.width = myWidth;
+        context.canvas.height = myHeight;
+        context.fillStyle = '#00FFFF';
+        context.fillRect(0,0,myWidth,myHeight);
+    }
+
+
+
+
     // code to calculate mouse position and paddle movement
         
     function calculateMousePos(evt){
@@ -56,6 +86,8 @@
     } 
         
     window.onload = function(){
+        init();
+        window.addEventListener('resize', init, false);  
         canvas = document.getElementById("gameCanvas");
         canvasContext = canvas.getContext("2d");
         
@@ -196,9 +228,8 @@
         canvasContext.fillRect(leftX,topY, width,height);
     }
     
-        
-    
     </script>
+    
 </body>
 
 </html>
