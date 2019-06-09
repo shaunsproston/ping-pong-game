@@ -12,20 +12,9 @@
 </head>
 <body>
 <style>
-
     body {
         margin: 0;
     }
-    @media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
-        html {
-            transform: rotate(-90deg);
-            transform-origin: left top;
-            width: 100vh;
-            overflow-x: hidden;
-            position: absolute;
-            top: 100%;
-            left: 0;
-        }
 }
 </style>
 
@@ -54,12 +43,7 @@
     const tableColor = 'green';
 
     // code to make canvas responsive
-/*
-    window.onload = function(){
-        init();
-        window.addEventListener('resize', init, false);    
-    }
-*/
+
     function init(){
         var gameCanvas = document.getElementById('gameCanvas');
         var context = gameCanvas.getContext('2d');
@@ -67,12 +51,7 @@
         var myHeight = window.innerHeight -7;
         context.canvas.width = myWidth;
         context.canvas.height = myHeight;
-        context.fillStyle = '#00FFFF';
-        context.fillRect(0,0,myWidth,myHeight);
     }
-
-
-
 
     // code to calculate mouse position and paddle movement
         
@@ -115,6 +94,14 @@
                         var mousePos = calculateMousePos(evt);
                         paddle1Y = mousePos.y-(PADDLE_HEIGHT/2);
                 });
+
+        // Code added to support touchscreen mobiles
+
+        canvas.addEventListener("touchstart",
+        function(evt){
+                var mousePos = calculateMousePos(evt);
+                paddle1Y = mousePos.y-(PADDLE_HEIGHT/2);
+        });
     }
     
     function ballReset() {
