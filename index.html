@@ -89,19 +89,21 @@
         
         canvas.addEventListener("mousedown", handleMouseClick);
         
+        // Code added to support touchscreen mobiles
+
+        canvas.addEventListener("touchmove",
+        function(evt){
+                var mousePos = calculateMousePos(evt);
+                paddle1Y = mousePos.y-(PADDLE_HEIGHT/2);
+        });
+        
         canvas.addEventListener("mousemove",
                 function(evt){
                         var mousePos = calculateMousePos(evt);
                         paddle1Y = mousePos.y-(PADDLE_HEIGHT/2);
                 });
 
-        // Code added to support touchscreen mobiles
-
-        canvas.addEventListener("touchstart",
-        function(evt){
-                var mousePos = calculateMousePos(evt);
-                paddle1Y = mousePos.y-(PADDLE_HEIGHT/2);
-        });
+        
     }
     
     function ballReset() {
